@@ -50,11 +50,30 @@ variable "ports" {
   }))
 }
 
-# variable "enable_blue_env" {
-#   description = "Enable blue environment"
-#   type        = bool
-#   default     = true
-# }
+variable "enable_blue_env" {
+  description = "Enable blue environment"
+  type        = bool
+  default     = true
+}
+
+variable "blue_instance_count" {
+  description = "Number of Instances in blue environment"
+  type        = number
+  default     = 2  
+}
+
+variable "enable_green_env" {
+  description = "Enable blue environment"
+  type        = bool
+  default     = false
+}
+
+variable "green_instance_count" {
+  description = "Number of Instances in blue environment"
+  type        = number
+  default     = 2  
+}
+
 
 variable key_name {
   type = string
@@ -105,4 +124,38 @@ variable lb_tg_protocol {
 variable instance_type {
     type = string
     description = "Provide Instance type"
+}
+
+variable "traffic_distribution" {
+  description = "Level of traffic distribution"
+  type = string
+}
+
+locals {
+traffic_dist_map = {
+  blue = {
+    blue = 100
+    green = 0
+  }
+  blue-90 = {
+    blue = 90
+    green = 10
+  }
+  split = {
+    blue = 50
+    green = 50
+  }
+   green = {
+    blue = 0
+    green = 100
+  }
+  green-90 = {
+    blue = 10
+    green = 90
+  }
+  split = {
+    blue = 50
+    green = 50
+  }
+}
 }
