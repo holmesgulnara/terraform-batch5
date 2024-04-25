@@ -1,5 +1,5 @@
 resource "aws_security_group" "group-4" {
-  name        = "group-4"
+  name        = var.sg_name
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.group-4.id
 
@@ -10,7 +10,7 @@ resource "aws_security_group" "group-4" {
       description = "TLS from VPC"
       from_port   = ingress.value.from_port
       to_port     = ingress.value.to_port
-      protocol    = "tcp"
+      protocol    = var.sg_protocol
       cidr_blocks = ["0.0.0.0/0"]
     }
   }

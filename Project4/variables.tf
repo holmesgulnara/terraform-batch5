@@ -5,22 +5,22 @@ variable region {
 
 variable vpc_cidr {
   type = string
-  description = "provide vpc cidr block"
+  description = "Provide vpc cidr block"
 }
 
 variable subnet1_cidr {
   type = string
-  description = "provide subnet1 cidr block"
+  description = "Provide subnet1 cidr block"
 }
 
 variable subnet2_cidr {
   type = string
-  description = "provide subnet2 cidr block"
+  description = "Provide subnet2 cidr block"
 }
 
 variable subnet3_cidr {
   type = string
-  description = "provide subnet3 cidr block"
+  description = "Provide subnet3 cidr block"
 }
 
 variable subnet1_name {
@@ -126,9 +126,49 @@ variable instance_type {
     description = "Provide Instance type"
 }
 
+variable IGW_name {
+  type = string
+  description = "Provide IGW name"
+}
+
+variable rt_name {
+  type = string
+  description = "Provide RT name"
+}
+
+variable blue_instance_name {
+  type = string
+  description = "Provide blue instance name"
+}
+
+variable blue_lb_tg {
+  type = string
+  description = "Provide LB TG name for blue instance"
+}
+
+variable sg_name {
+  type = string
+  description = "Provide SG name"
+}
+
+variable sg_protocol {
+  type = string
+  description = "Provide SG protocol"
+}
+
 variable "traffic_distribution" {
   description = "Level of traffic distribution"
   type = string
+}
+
+variable green_instance_name {
+  type = string
+  description = "Provide green instance name"
+}
+
+variable green_lb_tg {
+  type = string
+  description = "Provide LB TG name for green onstance"
 }
 
 locals {

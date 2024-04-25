@@ -7,12 +7,12 @@ resource "aws_instance" "blue" {
   user_data = file("blue.sh")
     
   tags = {
-    Name = "blue-instance"
+    Name = var.blue_instance_name
   }
 }
 
 resource "aws_lb_target_group" "blue" {
-  name     = "blue-tg-lb"
+  name     = var.blue_lb_tg
   port     = var.lb_tg_ports[0]
   protocol = var.lb_tg_protocol[0]
   vpc_id   = aws_vpc.group-4.id

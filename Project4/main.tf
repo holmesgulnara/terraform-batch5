@@ -16,7 +16,7 @@ resource "aws_vpc" "group-4" {
 }
 
 resource "aws_subnet" "grp4-subnet-1" {
-  availability_zone = "us-east-2a"
+  availability_zone = "${var.region}a"
   vpc_id     = aws_vpc.group-4.id
   cidr_block = var.subnet1_cidr
   map_public_ip_on_launch =var.ip_on_launch
@@ -26,24 +26,24 @@ resource "aws_subnet" "grp4-subnet-1" {
   }
 }
 resource "aws_subnet" "grp4-subnet-2" {
-  availability_zone = "us-east-2b"
+  availability_zone = "${var.region}b"
   vpc_id     = aws_vpc.group-4.id
   cidr_block = var.subnet2_cidr
    map_public_ip_on_launch =var.ip_on_launch
 
   tags = {
-    Name = "grp4-subnet2"
+    Name = var.subnet2_name
   }
 }
 
 resource "aws_subnet" "grp4-subnet-3" {
-  availability_zone = "us-east-2c"
+  availability_zone = "${var.region}c"
   vpc_id     = aws_vpc.group-4.id
   cidr_block = var.subnet3_cidr
    map_public_ip_on_launch =var.ip_on_launch
 
   tags = {
-    Name = "grp4-subnet3"
+    Name = var.subnet3_name
   }
 }
 
@@ -51,7 +51,7 @@ resource "aws_internet_gateway" "grp4-gw" {
   vpc_id = aws_vpc.group-4.id
 
   tags = {
-    Name = "grp4-IGW"
+    Name = var.IGW_name
   }
 }
 
@@ -64,7 +64,7 @@ resource "aws_route_table" "grp4-rt" {
   }
 
   tags = {
-    Name = "grp4-rt"
+    Name = var.rt_name
   }
 }
 
